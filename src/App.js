@@ -1,14 +1,12 @@
 import React from 'react';
-import NavBar from './components/NavBar'
+import TopBar from './components/TopBar.js'
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p> 
-          This is App
-        </p>
-        <NavBar/>
+        <TopBar/>
       </header>
       <body>
 
