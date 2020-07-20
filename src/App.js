@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import CardContainer from "./containers/CardContainer.js"
 import TitlePage from "./components/TitlePage.js"
 
-function App() {
-  
+class App extends React.Component {
+  render() {
   return (
     <div className="App">
       <header className="App-header">
@@ -16,6 +16,7 @@ function App() {
       <body></body>
     </div>
   );
+  }
 }
 
 export default App;
