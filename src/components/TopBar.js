@@ -3,18 +3,29 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 class TopBar extends Component {
   render() {
     return (
       <div>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Navbar.Brand href="#home">GameVibes</Navbar.Brand>
+          <Link to="/">
+          <Navbar.Brand href="/">GameVibes</Navbar.Brand>
+          </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="#features">Games</Nav.Link>
-              <Nav.Link href="#pricing">Reviews</Nav.Link>
+              <Link to="/allgames">
+                <Nav.Link href="/allgames">
+                Games
+              </Nav.Link>
+                </Link>
+                <Link to="/reviews">
+              <Nav.Link href="/reviews">
+                  Reviews
+              </Nav.Link>
+                </Link>
               <Nav.Link href="#reviewform">Leave a Review!</Nav.Link>
               {/* <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -31,10 +42,14 @@ class TopBar extends Component {
               </NavDropdown> */}
             </Nav>
             <Nav>
-              <Nav.Link href="#deets">Sign Up</Nav.Link>
-              <Nav.Link eventKey={2} href="#memes">
+              <Link to="/signup">
+              <Nav.Link href="/signup">Sign Up</Nav.Link>
+              </Link>
+              <Link to="/signin">
+              <Nav.Link eventKey={2} href="signin">
                 Sign In
               </Nav.Link>
+              </Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
