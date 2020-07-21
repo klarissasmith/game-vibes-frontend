@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import TitlePage from "./containers/TitlePage.js";
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
+import ReviewForm from "./components/ReviewForm";
+import { api } from "./services/api";
 
 //CONSTANTS
 const usersURL = "http://localhost:3000/users";
@@ -11,19 +13,37 @@ const usersURL = "http://localhost:3000/users";
 
 class App extends React.Component {
   state = {
-    users: [],
+    auth: {
+      user: {},
+    },
   };
 
-  allUsers = () => {
-    fetch(usersURL)
-      .then((response) => response.json())
-      .then((data) => this.setState({ users: data }));
+  // used in submitting login Form, sets App state and token for user
+  onSignIn = (data) => {
+    const updatedState = {
+      ...this.state.auth,
+      user: { id: data.id, username: data.username },
+    };
+    localStorage.setItem("token", data.jwt);
+    this.setState({ auth: updatedState });
   };
 
-  componentDidMount = () => {
-    this.allUsers();
+  onLogout = () => {
+    localStorage.removeItem("token");
+    this.setState({ auth: { user: {} } });
   };
 
+  componentDidMount() {
+    const token = localStorage.getItem("token");
+
+    // IF TOKEN EXISTS, CALLS GETCURRENTUSER FUNCTION FROM API AND SETS STATE
+    if (token) {
+      api.auth.getCurrentUser().then((user) => {
+        const updatedState = { ...this.state.auth, user: user };
+        this.setState({ auth: updatedState });
+      });
+    }
+  }
   render() {
     console.log(this.state);
     return (
@@ -34,8 +54,9 @@ class App extends React.Component {
             <TopBar />
             <Route exact path="/" render={() => <TitlePage />} />
             <Route exact path="/allgames" render={() => <TitlePage />} />
-            <Route path="/signup" component={SignUp} />
-            <Route path="/signin" component={SignIn} />
+            <Route path="/signup" render={(props) => <SignUp {...props} onSignIn={this.onSignIn}/>} />
+            <Route path="/signin" render={(props) => <SignIn {...props} />}/>
+            <Route path="/reviewform" component={ReviewForm} />
           </Router>
         </body>
       </div>

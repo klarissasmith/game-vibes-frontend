@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 
 class TopBar extends Component {
   render() {
@@ -25,8 +25,11 @@ class TopBar extends Component {
               <Nav.Link href="/reviews">
                   Reviews
               </Nav.Link>
-                </Link>
-              <Nav.Link href="#reviewform">Leave a Review!</Nav.Link>
+              </Link>
+
+              {/* <Link to="/reviewform"> 
+                <Nav.Link href="/reviewform">Leave a Review!</Nav.Link>
+              </Link> */}
               {/* <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
