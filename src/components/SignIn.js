@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -19,7 +18,7 @@ class SignIn extends Component {
   handleChange = (e) => {
     const newFields = {
       ...this.state.fields,
-      [e.target.username]: e.target.value,
+      [e.target.name]: e.target.value,
     };
     this.setState({ fields: newFields });
   };
@@ -27,7 +26,6 @@ class SignIn extends Component {
   //EVENT HANDLER FOR SUBMIT
   handleSubmit = (e) => {
     e.preventDefault();
-    // fetch request to login
     api.auth.signIn(this.state.fields).then((resp) => {
       if (!resp.error) {
         // calls login function from App.js if no error from fetch
@@ -49,7 +47,7 @@ class SignIn extends Component {
               <Form>
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Username</Form.Label>
-                  <Form.Control type="username" placeholder="Enter username" />
+                  <Form.Control type="username" placeholder="Enter username" name="username" onChange={this.handleChange}/>
                   {/* <Form.Text className="text-muted">
                     We'll never share your email with anyone else.
                   </Form.Text> */}
@@ -60,6 +58,8 @@ class SignIn extends Component {
                   <Form.Control
                     type="password"
                     placeholder="Enter your password"
+                    name="password"
+                    onChange={this.handleChange}
                   />
                 </Form.Group>
                 {/* <Form.Group controlId="formBasicCheckbox">
