@@ -1,6 +1,6 @@
 import React from "react";
 import TopBar from "./components/TopBar.js";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import TitlePage from "./containers/TitlePage.js";
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
@@ -16,6 +16,7 @@ class App extends React.Component {
     auth: {
       user: {},
     },
+    allGames: []
   };
 
   // used in submitting login Form, sets App state and token for user
@@ -33,7 +34,13 @@ class App extends React.Component {
     this.setState({ auth: { user: {} } });
   };
 
+  allGames = () => {
+    fetch("http://localhost:3000/api/v1/games").then(response => response.json()).then(data => this.setState({ allGames: data}))
+
+  }
+
   componentDidMount() {
+    this.allGames()
     const token = localStorage.getItem("token");
 
     // IF TOKEN EXISTS, CALLS GETCURRENTUSER FUNCTION FROM API AND SETS STATE
@@ -45,17 +52,27 @@ class App extends React.Component {
     }
   }
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <div className="App">
         <header className="App-header"></header>
         <body>
           <Router>
             <TopBar />
-            <Route exact path="/" render={() => <TitlePage />} />
-            <Route exact path="/allgames" render={() => <TitlePage />} />
-            <Route path="/signup" render={(props) => <SignUp {...props} onSignIn={this.onSignIn}/>} />
-            <Route path="/signin" render={(props) => <SignIn {...props} />}/>
+            <Route exact path="/" render={(props) => <TitlePage {...props} allGames={this.state} />} />
+            <Route
+              exact
+              path="/allgames"
+              render={(props) => (
+                <TitlePage {...props} allGames={this.state.allGames} />
+              )}
+            />
+      
+            <Route
+              path="/signup"
+              render={(props) => <SignUp {...props} onSignIn={this.onSignIn} />}
+            />
+            <Route path="/signin" render={(props) => <SignIn {...props} />} />
             <Route path="/reviewform" component={ReviewForm} />
           </Router>
         </body>

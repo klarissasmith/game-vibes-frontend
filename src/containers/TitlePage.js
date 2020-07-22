@@ -4,13 +4,23 @@ import CardContainer from './CardContainer'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const TitlePage = props => {
-    return (
-      <div>
-      <Route exact path="/" component={TitleBanner} />
-      <Route exact path="/" component={CardContainer} />
-      <Route path="/allgames" component={CardContainer} />
-      </div>
-    );
+  console.log(props)
+  
+  return (
+    <div>
+      <Router>
+        <Route exact path="/" component={TitleBanner} />
+      <Route
+        exact
+        path="/"
+        render={(props) => (
+          <CardContainer {...props} allGames={props.allGames} />
+        )}
+      />
+      <Route path="/allgames" render={(props) => (<CardContainer {...props} allGames={props.allGames}/>)} />
+      </Router>
+    </div>
+  );
 }
 
 export default TitlePage

@@ -1,6 +1,7 @@
 //TOKEN HELD IN THE BROWSER
 const token = () => localStorage.getItem("token");
 
+
 //THE HEADERS FOR EACH FETCH
 const headers = () => {
   return {
@@ -8,6 +9,68 @@ const headers = () => {
     Accept: "application/json",
     Authorization: token(),
   };
+};
+// const APIheaders = () => {
+//   return {
+//     "Content-Type": "application/json", 
+//     "Accept": "application/json",
+//     Authorization: token(),
+//     "user-key": API_KEY
+//   }
+// }
+
+
+
+
+// const getCovers = () => {
+//   return fetch("http://localhost:3000/api/v1/users", {
+//     method: "POST",
+//     headers: headers(),
+//     body: JSON.stringify(data: "fields alpha_channel,animated,checksum,game,height,image_id,url,width;"),
+//   }).then((resp) => resp.json());
+// };
+
+//User authentication fetches
+const signUp = (data) => {
+    console.log(data)
+  return fetch("http://localhost:3000/api/v1/users", {
+    method: "POST",
+    headers: headers(),
+    body: JSON.stringify(data),
+  }).then((resp) => resp.json());
+};
+
+const signIn = (data) => {
+  return fetch("http://localhost:3000/api/v1/auth", {
+    method: "POST",
+    headers: headers(),
+    body: JSON.stringify(data),
+  }).then((resp) => resp.json());
+};
+
+const getCurrentUser = () => {
+  const URL = "http://localhost:3000/api/v1/current_user";
+  return fetch(URL, {
+    headers: headers(),
+  }).then((resp) => {
+    return resp.json();
+  });
+};
+
+const getAllUsers = () => {
+  const URL = "http://localhost:3000/api/v1/users";
+  return fetch(URL).then((resp) => resp.json());
+};
+
+export const api = {
+  auth: {
+    signIn,
+    getCurrentUser,
+    signUp,
+  },
+  users: {
+    getAllUsers,
+  },
 };
 
 /*
@@ -59,45 +122,3 @@ const editJournal = (data) => {
   }).then((resp) => resp.json());
 };
 */
-//User authentication fetches
-const signUp = (data) => {
-    console.log(data)
-  return fetch("http://localhost:3000/api/v1/users", {
-    method: "POST",
-    headers: headers(),
-    body: JSON.stringify(data),
-  }).then((resp) => resp.json());
-};
-
-const signIn = (data) => {
-  return fetch("http://localhost:3000/api/v1/auth", {
-    method: "POST",
-    headers: headers(),
-    body: JSON.stringify(data),
-  }).then((resp) => resp.json());
-};
-
-const getCurrentUser = () => {
-  const URL = "http://localhost:3000/api/v1/current_user";
-  return fetch(URL, {
-    headers: headers(),
-  }).then((resp) => {
-    return resp.json();
-  });
-};
-
-const getAllUsers = () => {
-  const URL = "http://localhost:3000/api/v1/users";
-  return fetch(URL).then((resp) => resp.json());
-};
-
-export const api = {
-  auth: {
-    signIn,
-    getCurrentUser,
-    signUp,
-  },
-  users: {
-    getAllUsers,
-  },
-};
