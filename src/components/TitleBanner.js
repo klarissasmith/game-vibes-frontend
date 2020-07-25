@@ -6,14 +6,15 @@ const TitleBanner = () => {
   return (
     <div>
       <Jumbotron>
-          <h1>Welcome to Game Vibes!</h1>
-          <p>
-            Here you will find a list of games and the resulting reviews from fellow enthusiasts. Enjoy!
-          </p>
-          <p>
-            <Button variant="primary">Learn more</Button>
-          </p>
-        </Jumbotron>
+        <h1>Welcome to Game Vibes!</h1>
+        <p>
+          Here you will find a list of games and the resulting reviews from
+          fellow enthusiasts. Enjoy!
+        </p>
+        <p>
+          <Button variant="primary">Sign Up</Button>
+        </p>
+      </Jumbotron>
     </div>
   );
 };

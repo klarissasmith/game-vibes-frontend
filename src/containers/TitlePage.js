@@ -17,7 +17,6 @@ const TitlePage = props => {
           <CardContainer {...props} allGames={props.allGames} />
         )}
       />
-      <Route path="/allgames" render={(props) => (<CardContainer {...props} allGames={props.allGames}/>)} />
       </Router>
     </div>
   );

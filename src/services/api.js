@@ -10,25 +10,7 @@ const headers = () => {
     Authorization: token(),
   };
 };
-// const APIheaders = () => {
-//   return {
-//     "Content-Type": "application/json", 
-//     "Accept": "application/json",
-//     Authorization: token(),
-//     "user-key": API_KEY
-//   }
-// }
 
-
-
-
-// const getCovers = () => {
-//   return fetch("http://localhost:3000/api/v1/users", {
-//     method: "POST",
-//     headers: headers(),
-//     body: JSON.stringify(data: "fields alpha_channel,animated,checksum,game,height,image_id,url,width;"),
-//   }).then((resp) => resp.json());
-// };
 
 //User authentication fetches
 const signUp = (data) => {

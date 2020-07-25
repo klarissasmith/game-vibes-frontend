@@ -5,6 +5,7 @@ import TitlePage from "./containers/TitlePage.js";
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import ReviewForm from "./components/ReviewForm";
+import AllGames from "./containers/AllGames"
 import { api } from "./services/api";
 
 //CONSTANTS
@@ -64,7 +65,7 @@ class App extends React.Component {
               exact
               path="/allgames"
               render={(props) => (
-                <TitlePage {...props} allGames={this.state.allGames} />
+                <AllGames {...props} allGames={this.state.allGames} />
               )}
             />
       
