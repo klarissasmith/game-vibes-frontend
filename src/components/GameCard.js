@@ -4,14 +4,14 @@ import CardDeck from "react-bootstrap/CardDeck";
 import { store } from "../App"
 
 const mappingCards = () => {
-  console.log(store.getState())
+  store.dispatch({type: "MAP", payload: `Show state: ${store.getState().allGames}`})
 }
 
 const GameCard = () => {
     return (
       <div>
         <CardDeck>
-          <Card>
+          <Card onClick={mappingCards}>
             <Card.Img variant="top" src="" />
             <Card.Body>
               <Card.Title>The Title of the Game</Card.Title>
@@ -24,35 +24,37 @@ const GameCard = () => {
               <small className="text-muted">Last updated 3 mins ago</small>
             </Card.Footer>
           </Card>
-          <Card>
-            <Card.Img variant="top" src="" />
-            <Card.Body>
-              <Card.Title>The Name of the Game</Card.Title>
-              <Card.Text>
-                "This is where a small summary will be ideally with a lovely
-                short "read more..." button
-              </Card.Text>
-            </Card.Body>
-            <Card.Footer>
-              <small className="text-muted">Last updated 3 mins ago</small>
-            </Card.Footer>
-          </Card>
-          <Card>
-            <Card.Img variant="top" src="" />
-            <Card.Body>
-              <Card.Title>The Name of the Game</Card.Title>
-              <Card.Text>
-                "This is where a small summary will be ideally with a lovely
-                short "read more..." button
-              </Card.Text>
-            </Card.Body>
-            <Card.Footer>
-              <small className="text-muted">Last updated 3 mins ago</small>
-            </Card.Footer>
-          </Card>
         </CardDeck>
       </div>
     );
-}
+  }
 
-export default GameCard
+  export default GameCard
+/*
+    <Card>
+            <Card.Img variant="top" src="" />
+            <Card.Body>
+              <Card.Title>The Name of the Game</Card.Title>
+              <Card.Text>
+                "This is where a small summary will be ideally with a lovely
+                short "read more..." button
+              </Card.Text>
+            </Card.Body>
+            <Card.Footer>
+              <small className="text-muted">Last updated 3 mins ago</small>
+            </Card.Footer>
+          </Card>
+          <Card>
+            <Card.Img variant="top" src="" />
+            <Card.Body>
+              <Card.Title>The Name of the Game</Card.Title>
+              <Card.Text>
+                "This is where a small summary will be ideally with a lovely
+                short "read more..." button
+              </Card.Text>
+            </Card.Body>
+            <Card.Footer>
+              <small className="text-muted">Last updated 3 mins ago</small>
+            </Card.Footer>
+          </Card>
+          */

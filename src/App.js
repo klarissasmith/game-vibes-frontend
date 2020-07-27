@@ -26,6 +26,14 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   console.log(state)
+  switch (action.type) {
+    case "MAP":
+      return {...state, allGames: "this" }
+      
+    default:
+      return state
+  }
+  
 }
 
 export const store = createStore(reducer)
