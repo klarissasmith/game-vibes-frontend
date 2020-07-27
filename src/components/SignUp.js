@@ -6,41 +6,15 @@ import Container from "react-bootstrap/Container";
 import { api } from "../services/api";
 
 class SignUp extends Component {
-  state = {
-    error: false,
-    fields: {
-      firstname: "",
-      lastname: "",
-      email: "",
-      username: "",
-      password: "",
-    },
-  };
+ 
 
   //HANDLES UPDATING STATE
   handleChange = (e) => {
-    const newFields = {
-      ...this.state.fields,
-      [e.target.name]: e.target.value,
-    };
-    this.setState({ fields: newFields });
   };
 
   //EVENT HANDLER FOR SUBMIT
   handleSubmit = (e) => {
     e.preventDefault();
-    // fetch request to login
-    api.auth.signUp(this.state.fields).then((resp) => {
-      console.log(resp)
-      if (!resp.error) {
-        // calls login function from App.js if no error from fetch
-        this.props.onSignIn(resp);
-        // redirects to home page
-        this.props.history.push("/");
-      } else {
-        this.setState({ error: true });
-      }
-    });
   };
 
   render() {

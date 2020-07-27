@@ -6,36 +6,16 @@ import Container from "react-bootstrap/Container";
 import { api } from "../services/api";
 
 class SignIn extends Component {
-  state = {
-    error: false,
-    fields: {
-      username: "",
-      password: "",
-    },
-  };
+ 
 
   //HANDLES UPDATING STATE
   handleChange = (e) => {
-    const newFields = {
-      ...this.state.fields,
-      [e.target.name]: e.target.value,
-    };
-    this.setState({ fields: newFields });
+   
   };
 
   //EVENT HANDLER FOR SUBMIT
   handleSubmit = (e) => {
     e.preventDefault();
-    api.auth.signIn(this.state.fields).then((resp) => {
-      if (!resp.error) {
-        // calls login function from App.js if no error from fetch
-        this.props.signIn(resp);
-        // redirects to home page
-        this.props.history.push("/");
-      } else {
-        this.setState({ error: true });
-      }
-    });
   };
 
   render() {

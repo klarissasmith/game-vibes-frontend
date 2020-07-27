@@ -3,9 +3,7 @@ import TitleBanner from '../components/TitleBanner'
 import CardContainer from './CardContainer'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-const TitlePage = props => {
-  console.log(props)
-  
+const TitlePage = () => {
   return (
     <div>
       <Router>
