@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore } from 'redux'
+import { Provider } from "react-redux";
+import { gameReducer } from "./reducer"
 import './index.css';
 import {App} from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-    
-  <App />,
+  <Provider store={createStore(gameReducer), applyMiddleware(thunk)}>
+    <App />
+ </Provider>, 
   document.getElementById('root')
 );
 

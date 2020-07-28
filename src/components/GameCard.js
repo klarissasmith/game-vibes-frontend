@@ -1,17 +1,15 @@
 import React from 'react'
 import Card from "react-bootstrap/Card";
 import CardDeck from "react-bootstrap/CardDeck";
-import { store } from "../App"
 
-const mappingCards = () => {
-  store.dispatch({type: "MAP", payload: `Show state: ${store.getState().allGames}`})
-}
 
-const GameCard = () => {
+
+const GameCard = (props) => {
+  console.log(props)
     return (
       <div>
         <CardDeck>
-          <Card onClick={mappingCards}>
+          <Card onClick={console.log("I've been clicked")}>
             <Card.Img variant="top" src="" />
             <Card.Body>
               <Card.Title>The Title of the Game</Card.Title>

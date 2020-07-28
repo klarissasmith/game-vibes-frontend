@@ -1,14 +1,23 @@
 import React from 'react'
 import GameCard from '../components/GameCard'
+import { connect } from 'react-redux'
 
-const CardContainer = () => {
-    const mapGames = () => {
+const CardContainer = (props) => {
+    // console.log(props)
+    let gameCard = props.allGames.map(game => {
         return (
             <div>
-                <GameCard />
+                <GameCard game={game} />
             </div>
         )
-    }
+    })
+    return gameCard
 }
 
-export default CardContainer
+const mapStateToProps = (state) => {
+    return {
+        allGames: state.allGames
+    }
+
+}
+export default connect(mapStateToProps)(CardContainer)
